@@ -10,10 +10,34 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        config {
+            storeFile file(KEY_PATH)
+            storePassword KEY_PASSWORD
+            keyAlias ALIAS_NAME
+            keyPassword ALIAS_PASSWORD
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        qihoo {
+            dimension "version"
+            applicationId "com.simpleweather.android.qihoo"
+            applicationIdSuffix ".qihoo"
+            versionNameSuffix "-qihoo"
+        }
+        baidu {
+            dimension "version"
+            applicationId "com.simpleweather.android.baidu"
+            applicationIdSuffix ".baidu"
+            versionNameSuffix "-baidu"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
